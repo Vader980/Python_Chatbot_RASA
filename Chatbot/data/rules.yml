@@ -1,0 +1,27 @@
+version: "3.1"
+
+rules:
+
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+  - action: utter_leave
+
+- rule: Say 'I am Pukkie Bot' anytime the user challenges
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+
+- rule: Search the file when user gives input
+  steps:
+  - intent: give_exam_module
+  - action: utter_give_exam_module
+  - action: action_fetch_module
+
+- rule: Search the file when user gives input
+  steps:
+  - intent: give_exam_date
+  - action: utter_give_exam_date
+  - action: action_fetch_date
+

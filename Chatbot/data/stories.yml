@@ -1,0 +1,219 @@
+version: "3.1"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_requestDadJoke
+  - intent: YesPlease
+  - action: utter_DadJoke
+  - action: utter_did_that_help
+  - intent: YesPlease
+  - action: utter_Enough
+
+- story: sad path 3
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: mood_unhappy
+    - action: utter_cheer_up
+    - action: utter_did_that_help
+    - intent: deny
+    - action: utter_requestDadJoke
+    - intent: deny
+    - action: utter_Sad
+    - action: utter_Robot
+    - action: utter_AnythingElse
+    - intent: affirm
+
+- story: sad path 4
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: mood_unhappy
+    - action: utter_cheer_up
+    - action: utter_did_that_help
+    - intent: deny
+    - action: utter_requestDadJoke
+    - intent: deny
+    - action: utter_Sad
+    - action: utter_Robot
+    - action: utter_AnythingElse
+    - intent: furtherDeny
+    - action: utter_goodbye
+
+- story: confused about class (venue)
+  steps:
+  - action: utter_service
+  - action: utter_options
+  - intent: venue_choice
+  - action: utter_leave
+
+- story: who are you?
+  steps:
+  - intent: bot_info
+  - action: utter_info
+
+- story: what do you do
+  steps:
+  - intent: bot_activity
+  - action: utter_activity
+
+#room stories
+- story: ask Room path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_venue
+    entities:
+      - module
+  - action: utter_venue
+  - intent: ask_Room
+    entities:
+      - Room
+  - action: utter_Room
+
+- story: ask venue path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_venue
+    entities:
+      - module
+  - action: utter_venue
+
+- story: help me please venue
+  steps:
+    - intent: class_questions
+    - action: utter_help
+    - action: utter_options
+    - intent: ask_venue
+      entities:
+        - module
+    - action: utter_venue
+
+  #class time stories
+- story: help me please time
+  steps:
+  - intent: class_questions
+  - action: utter_help
+  - action: utter_options
+  - intent: ask_classTime
+    entities:
+      - module
+  - action: utter_Random
+  - action: utter_class_time
+
+- story: Ask Class Time
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_classTime
+    entities:
+      - module
+  #- action: utter_Random
+  - action: utter_class_time
+
+- story: Ask Class Day
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_classDay
+    entities:
+      - module
+ # - action: utter_Random
+  - action: utter_classDay
+
+- story: Show All Class Times
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: get_allClassTimes
+  - action: utter_Random
+  - action: utter_AllClass
+
+
+#Personal info
+#- story: learn name
+#  steps:
+#    - intent: tell_name
+#    - action: utter_learnName
+#    - intent: give_name
+#   - action: action_receive_name
+#    - action: utter_more
+#    - intent: repeat_name
+#    - action: action_say_name
+#    - action: utter_more
+
+#- story: repeat Name
+#  steps:
+#    - intent: repeat_name
+#    - action: action_say_name
+#    - action: utter_more
+
+#exams
+
+- story: get specific date
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: find_date
+    - action: utter_find_date
+    - intent: give_exam_date
+    - action: utter_give_exam_date
+    - action: action_fetch_date
+
+
+- story: get specific exam
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: find_module
+    - action: utter_find_module
+    - intent: give_exam_module
+    - action: utter_give_exam_module
+    - action: action_fetch_module
+
+
+- story: show all exams
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: csvExam
+    - action: utter_csvExams
+    - action: action_all
+
+- story: help me please exam 1
+  steps:
+    - intent: class_questions
+    - action: utter_help
+    - action: utter_options
+    - intent: ask_venue
+      entities:
+        - module
+    - action: utter_venue
+
+

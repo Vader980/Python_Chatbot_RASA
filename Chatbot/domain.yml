@@ -1,0 +1,370 @@
+version: "3.1"
+
+config:
+  store_entities_as_slots: true
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+
+#intents begin
+intents:
+  - greet:
+      use_entities: true
+  - goodbye:
+      use_entities: true
+  - affirm:
+      use_entities: true
+  - deny:
+      use_entities: true
+  - mood_great:
+      use_entities: true
+  - mood_unhappy:
+      use_entities: true
+  - bot_challenge:
+      use_entities: true
+  - bot_info:
+      use_entities: true
+  - bot_activity:
+      use_entities: true
+  - ask_venue:
+      use_entities: true
+  - venue_choice:
+      use_entities: true
+  - ask_Room:
+      use_entities: true
+  - find_date:
+      use_entities: true
+  - find_module:
+      use_entities: true
+  - csvExam:
+      use_entities: true
+  - give_exam_module:
+      use_entities: true
+  - give_exam_date:
+      use_entities: true
+  - get_allClassTimes:
+      use_entities: true
+  - class_questions:
+      use_entities: true
+  - furtherDeny:
+      use_entities: true
+  - ask_classTime:
+      use_entities: true
+  - ask_classDay:
+      use_entities: true
+  - YesPlease:
+      use_entities: true
+
+entities:
+  - module
+  - Room
+  - person
+  - date
+  - day
+
+slots:
+  Room:
+      type: text
+      influence_conversation: false
+      mappings:
+        - type: from_entity
+          entity: Room
+
+  date:
+      type: any
+      mappings:
+        - type: from_entity
+          entity: date
+
+  module:
+      type: text
+      influence_conversation: false
+      mappings:
+        - type: from_entity
+          entity: module
+
+
+responses:
+  utter_greet:
+    - text: "Hey! How are you?"
+
+  utter_service:
+    - text: "How can I help you today?"
+
+  utter_cheer_up:
+  - text: "If this doesnt make you feel better, then sue me (not really though. I cant afford to pay lol.):"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_happy:
+  - text: "Great, carry on!"
+
+  utter_goodbye:
+  - text: "Cheers!"
+
+
+
+  utter_iamabot:
+  - text: "I am Pukkie Bot."
+
+  utter_options:
+  - text: "Do you need with your class times, your class venues, or your exam schedule?"
+
+  utter_help:
+    - text: "Chill, what do you need help with?"
+
+  utter_leave:
+  - text: "Enjoy your day!"
+
+  utter_info:
+  - text: "Thank you for asking. I am Pukki Bot. Im here to help you navigate student life at the university because 
+           i know how confusing this campus can be. Im also here tou just a have a little chat too."
+
+  utter_activity:
+  - text: "I can tell you when and where your classes are taking place. 
+  I can tell you what content you will be covering in a certain week of the semester.
+  I can tell you when and where your exam's will be taking place.
+  I'm also a dad joke expert."
+
+#Person information
+#  utter_learnName:
+#    - text: "What's your name?"
+
+#Venue responses
+  utter_Room:
+    - condition:
+        - type: slot
+          name: Room
+          value: "310"
+      text: "{Room} is the 10'th room on the 3'rd floor of the Building."
+
+    - condition:
+        - type: slot
+          name: Room
+          value: "201"
+      text: "{Room} is the 1'st room on the 2'nd floor of the Building."
+
+    - condition:
+        - type: slot
+          name: Room
+          value: "117"
+      text: "{Room} is the 17'th room on the 1'st floor of the Building."
+
+    - condition:
+        - type: slot
+          name: Room
+          value: "113"
+      text: "{Room} is the 13'th room on the 1'st floor of the Building."
+
+
+    - text: "{Room} is the 13'th room on the 1'st floor of the Building."
+
+  utter_venue:
+    - condition:
+        - type: slot
+          name: module
+          value: "Cmpg311"
+      text: "{module} is hosted at Building E7 in room 310."
+
+    - condition:
+        - type: slot
+          name: module
+          value: "Cmpg312"
+      text: "{module} is hosted at Building E7 in room 310."
+
+    - condition:
+      - type: slot
+        name: module
+        value: "Cmpg313"
+      text: "{module} is hosted at Building F3 in room G10."
+
+    - condition:
+       - type: slot
+         name: module
+         value: "Cmpg315"
+      text: "{module} is hosted at Building E7 in room 310."
+
+    - condition:
+        - type: slot
+          name: module
+          value: "Cmpg321"
+      text: "{module} is hosted at Building E7 in room 310."
+
+    - condition:
+        - type: slot
+          name: module
+          value: "Cmpg322"
+      text: "{module} is hosted at Building G4 in room 201."
+
+    - condition:
+      - type: slot
+        name: module
+        value: "Cmpg323"
+      text: "{module} is hosted at Building G1 in room 113/117."
+
+    - condition:
+       - type: slot
+         name: module
+         value: "Cmpg324"
+      text: "{module} is hosted at G1 room 201."
+
+    - text: "sorry but i do not know where {module} is."
+
+#class times responses
+
+  utter_class_time:
+    - condition:
+      - type: slot
+        name: module
+        value: "cmpg311"
+      text: "{module} will take place at 09:00 on Monday morning and 16:00 on Wednesday afternoon."
+    - condition:
+      - type: slot
+        name: module
+        value: "cmpg312"
+      text: "{module} will take place at 11:00 on Tuesday morning and 14:30 on Friday afternoon."
+    - condition:
+      - type: slot
+        name: module
+        value: "cmpg313"
+      text: "{module} will take place at 07:30 on Tuesday morning and 13:00 on Friday afternoon."
+    - condition:
+      - type: slot
+        name: module
+        value: "cmpg315"
+      text: "{module} will take place at 07:30 on Monday morning and 14:30 on Thursday afternoon."
+    - condition:
+      - type: slot
+        name: module
+        value: "cmpg321"
+      text: "{module} will take place at 11:00 on Monday morning and 07:30 on Wednesday morning."
+    - condition:
+      - type: slot
+        name: module
+        value: "cmpg322"
+      text: "{module} will take place at 14:30 on Monday afternoon, 13:00 on Wednesday afternoon, and 07:30 on Thursday morning."
+    - condition:
+      - type: slot
+        name: module
+        value: "cmpg324"
+      text: "{module} will take place at 14:30 on Tuesday afternoon, 09:30 on Thursday morning, and 07:30 on Friday morning."
+    - condition:
+      - type: slot
+        name: module
+        value: "cmpg325"
+      text: "{module} will take place at 09:30 on Tuesday morning and 11:00 on Wednesday morning."
+
+  utter_classDay:
+    - condition:
+      - type: slot
+        name: module
+        value: "Cmpg311"
+      text: "{module} will take place on Monday morning and Wednesday afternoon."
+    - condition:
+      - type: slot
+        name: module
+        value: "Cmpg312"
+      text: "{module} will take place on Tuesday morning and Friday afternoon."
+    - condition:
+      - type: slot
+        name: module
+        value: "Cmpg313"
+      text: "{module} will take place on Tuesday morning and Friday afternoon."
+    - condition:
+      - type: slot
+        name: module
+        value: "Cmpg315"
+      text: "{module} will take place on Monday morning and Thursday afternoon."
+    - condition:
+      - type: slot
+        name: module
+        value: "Cmpg321"
+      text: "{module} will take place on Monday morning and Wednesday morning."
+    - condition:
+      - type: slot
+        name: module
+        value: "Cmpg322"
+      text: "{module} will take place on Monday afternoon, Wednesday afternoon, and Thursday morning."
+    - condition:
+      - type: slot
+        name: module
+        value: "Cmpg324"
+      text: "{module} will take place on Tuesday afternoon, Thursday morning, and Friday morning."
+    - condition:
+      - type: slot
+        name: module
+        value: "Cmpg325"
+      text: "{module} will take place on Tuesday morning, and Wednesday morning."
+
+    - text: sorry, but i do not know what time {module} is.
+
+  utter_AllClass:
+      - text: "CMPG311 will take place at 09:00 on Monday morning and 16:00 on Wednesday afternoon.\
+            CMPG312 will take place at 11:00 on Tuesday morning and 14:30 on Friday afternoon.\
+            CMPG313 will take place at 07:30 on Tuesday morning and 13:00 on Friday afternoon.\
+            CMPG315 will take place at 07:30 on Monday morning and 14:30 on Thursday afternoon.\
+            CMPG321 will take place at 11:00 on Monday morning and 07:30 on Wednesday morning.\
+            CMPG322 will take place at 14:30 on Monday afternoon, 13:00 on Wednesday afternoon, and 07:30 on Thursday morning.\
+            CMPG324 will take place at 14:30 on Tuesday afternoon, 09:30 on Thursday morning, and 07:30 on Friday morning.\
+            CMPG325 will take place at 09:30 on Tuesday morning and 11:00 on Wednesday morning."
+
+  utter_Random:
+    - text: "Worry not, organized student! i will give you what you need in a second!"
+    - text: "I hope youre not asking me because youre thinking of missing class today..."
+    - text: "Good on your for trying to plan your timetable. Here you go..."
+
+  utter_DadJoke:
+    - text: "Dogs can't operate MRI machines. But catscan"
+    - text: "I used to be addicted to soap, but I’m clean now"
+    - text: "I went to buy some camouflage pants, but I couldn't find any."
+
+  utter_requestDadJoke:
+    - text: "May i interest you ...in perhaps...A DAD JOKE (dont worry, im great at them)"
+
+  utter_another:
+    - text: "would you like some more?"
+
+  utter_Enough:
+    - text: "Okay, thats enough. Would you like help with anything else?"
+
+  utter_Sad:
+    - text: "Okay... now were both sad."
+
+  utter_Robot:
+    - text: "Just joking... i dont have feelings, but you do and i hope that whatever is getting you down gets better,
+    and please just remember that you are loved and people care about you. Im sure they would drop any and all plans
+    to come to your aid! <3"
+
+  utter_AnythingElse:
+    - text: "Would you like anything else?"
+
+#exam responses
+  utter_csvExams:
+  - text: "Okay, displaying entire schedule/timetable..."
+
+  utter_find_module:
+  - text: "Which module should I find the exam details for?"
+  - text: "Details for which exam?"
+
+  utter_find_date:
+  - text: "Which date should I show the exams for?"
+  - text: "Exams for which date?"
+
+  utter_give_exam_module:
+  - text: "Okay, fetching exam details..."
+
+  utter_give_exam_date:
+  - text: "Okay, fetching the exams for this date..."
+
+actions:
+  - action_all
+  - action_fetch_date
+  - action_fetch_module
+
+
+
+
+
+

@@ -1,0 +1,306 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+    - sup
+    - awe
+    - wagwaan
+    - hallo
+    - what's up
+    - ekse
+    
+
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+    - cheers
+    - cheerio
+
+- intent: affirm
+  examples: |
+    - of course
+    - that sounds good
+    - correct
+    - perfect
+    - perfecto 
+    - noice
+
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+    - nah
+
+- intent: furtherDeny
+  examples: |
+    - im sorry but 
+    - sadly not 
+    - unfortunately not 
+    - well try again another time
+
+- intent: YesPlease
+  examples: |
+    - yes
+    - yes please
+    - give it to me
+    - lay it on me 
+    - why not
+    - sure
+
+- intent: mood_great
+  examples: |
+    - great
+    - good
+    - amazing
+    - feeling like a king
+    - wonderful
+    - I am feeling very good
+    - I am great
+    - I am amazing
+    - I am going to save the world
+    - super stoked
+    - extremely good
+    - so so perfect
+    - so good
+    - so perfect
+    - on top of the world
+
+- intent: mood_unhappy
+  examples: |
+    - my day was horrible
+    - I am sad
+    - I don't feel very well
+    - I am disappointed
+    - super sad
+    - I'm so sad
+    - sad
+    - very sad
+    - unhappy
+    - not good
+    - not very good
+    - extremely sad
+    - so saad
+    - so sad
+    - i want the world to swallow me whole
+
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+    - what are you?
+    - who are you?
+
+- intent: bot_info
+  examples: |
+    - tell me about yourself
+    - who are you
+
+- intent: bot_activity
+  examples: |
+    - what do you do 
+    - what can you do 
+    - tell me what you are capable of 
+    - tell me what you do
+    
+- regex: module
+  examples: |
+    - [a-zA-Z]{4}\d{3}
+
+
+# class times
+- intent: ask_classDay
+  examples: |
+    - what day do i have [CMPG311](module)?
+    - Class time for [CMPG 311](module)
+    - [CMPG311](module) day   
+    - what day do i have [CMPG312](module)?
+    - Class time for [CMPG 312](module)
+    - [CMPG312](module) day  
+    - what day do i have [CMPG313](module)?
+    - Class time for [CMPG 313](module)
+    - [CMPG313](module) day   
+    - what day do i have [CMPG315](module)?
+    - Class time for [CMPG 315](module)
+    - [CMPG315](module) day
+
+- intent: ask_classTime
+  examples: |
+    - what time is [CMPG321](module)?
+    - Class time for [CMPG 321](module)
+    - [CMPG321](module) time  
+    - what time do i have [CMPG322](module)?
+    - Class time for [CMPG 322](module)
+    - [CMPG322](module) time
+    - what time do i have [CMPG324](module)?
+    - Class time for [CMPG 324](module)
+    - [CMPG324](module) time
+    - what time do i have [CMPG325](module)?
+    - Class time for [CMPG 325](module)
+    - [CMPG325](module) time
+
+- intent: get_allClassTimes
+  examples: |
+    - give me all the times 
+    - tell me about my schedule 
+    - show me all 
+    - i want all times
+
+# general class questions
+
+- intent: class_questions
+  examples: |
+    - i need help with my classes
+    - i need help with my class
+    - help me with my classes 
+    - need class help
+    - help me 
+    - help help help
+
+#- intent: time_choice
+#  examples: |
+#    - time
+#    - time please
+#    - when
+#    - what time
+
+#room intents
+- regex: Room
+  examples: |
+    - \d{3}
+
+- intent: ask_Room
+  examples: |
+    - Where is [310](Room)?
+    - [201](Room) venue?
+    - How to get to [117](Room)?
+    - Where [113](Room)?
+
+- regex: module
+  examples: |
+    - [a-zA-Z]{4}\d{3}
+
+- intent: ask_venue
+  examples: |
+    - Where is [CMPG313](module)?
+    - [cmpg315](module) venue?
+    - How to get to [Cmpg321](module)?
+    - Where is the [Mths225](module) venue?
+    - How do i get to [Bman111](module)?
+    - Where [WVNS221](module) ?
+    - How do get to [STTN121](module)?
+    - Where is [ACCS314](module) ?
+
+- intent: venue_choice
+  examples: |
+    - venue
+    - venue please
+    - location 
+    - place
+
+#name intents
+#- intent: tell_name
+#  examples: |
+#    - may i introduce myself to you?
+#    - let me tell you my name
+#    - i want to tell you my name
+#    - do yo want to know my name
+
+
+#- intent: repeat_name
+#  examples: |
+#    - whats my name
+#    - say my name
+#    - tell me my name
+#    - do you know my name
+#
+#- intent: give_name
+#  examples: |
+#    - Tasmiyah
+#    - Ulysses
+#    - Pabi
+#    - Denzel
+#    - Daniel
+#    - Jacques
+#    - Ruan
+#    - Muhammed
+#    - Zaid
+#    - Markus
+
+#exams
+- intent: find_date
+  examples: |
+    - date
+    - find exams on a specific date
+    - I want to see the exams for specific date
+    - specific date
+    - exams for specific date
+    - find exams for one date
+    - find an exam on date
+    - find exams on date
+    - exams of one date
+
+- intent: find_module
+  examples: |
+    - one
+    - I want to see the details of a specific exam
+    - specific exam
+    - find specific exam
+    - find an exam in schedule
+    - find an exam
+    - find exam
+    - details of one exam
+
+- intent: csvExam
+  examples: |
+    - all of
+    - entire exam timetable
+    - entire exam schedule
+    - I want to view the entire exam schedule
+    - I want to view the entire exam timetable
+    - I want to see all the exams
+    - I want the entire exam schedule
+    - I want the entire exam timetable
+    - whole exam schedule
+    - whole exam timetable
+
+- intent: give_exam_date
+  examples: |
+    - [2023/06/21](date)
+    - [2023/06/22](date)
+    - the date is [2023/06/25](date)
+    - my name is [2023/07/02](date)
+
+- intent: give_exam_module
+  examples: |
+    - exam for [CMPG 311](module)
+    - exam dates for [CMPG 312](module)
